@@ -89,7 +89,7 @@ int main() {
                   << std::endl;
 
         Size timeSteps = 10;
-        Size samples = 1000000;
+        Size samples = 100000;
         Size mcSeed = 42;
 
         // European, old engine
@@ -267,7 +267,7 @@ int main() {
         std::cout << spacer << NPV << spacer << us / 1000000 << std::endl;
 
         // All done
-
+        system("pause");
         return 0;
 
     } catch (std::exception& e) {
