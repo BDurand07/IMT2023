@@ -14,7 +14,6 @@ namespace QuantLib {
         Real diffusion(Time t, Real x) const;
         Real apply(Real x0, Real dx) const;
 
-
     private:
         double underlying_value;
         double risk_free_rate;
