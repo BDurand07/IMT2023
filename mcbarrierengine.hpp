@@ -78,7 +78,7 @@ namespace QuantLib {
                           Real requiredTolerance,
                           Size maxSamples,
                           bool isBiased,
-                          BigNatural seed
+                          BigNatural seed,
                           bool constantParameters);
         void calculate() const override {
             Real spot = process_->x0();
@@ -173,7 +173,8 @@ namespace QuantLib {
         Real requiredTolerance,
         Size maxSamples,
         bool isBiased,
-        BigNatural seed)
+        BigNatural seed,
+        bool constantParameters)
     : McSimulation<SingleVariate, RNG, S>(antitheticVariate, false), process_(std::move(process)),
       timeSteps_(timeSteps), timeStepsPerYear_(timeStepsPerYear), requiredSamples_(requiredSamples),
       maxSamples_(maxSamples), requiredTolerance_(requiredTolerance), isBiased_(isBiased),
@@ -330,7 +331,7 @@ namespace QuantLib {
     template <class RNG, class S>
     inline MakeMCBarrierEngine_2<RNG,S>&
     MakeMCBarrierEngine_2<RNG,S>::withConstantParameters(bool constantParameters) {
-        constantParameters_=constantParameters
+        constantParameters_ = constantParameters;
         return *this;
     }
 
