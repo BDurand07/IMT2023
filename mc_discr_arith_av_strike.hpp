@@ -29,6 +29,8 @@
 #include <ql/pricingengines/asian/mc_discr_arith_av_strike.hpp>
 #include <ql/processes/blackscholesprocess.hpp>
 #include <utility>
+#include "constantblackscholesprocess.hpp" // including constant BS process
+#include <iostream>
 
 namespace QuantLib {
 
@@ -60,7 +62,7 @@ namespace QuantLib {
 
         ext::shared_ptr<path_generator_type> pathGenerator() const override {
 
-            Size dimensions = MCDiscreteArithmeticASEngine_2<SingleVariate, RNG, S>::process_->factors();
+            Size dimensions = MCDiscreteArithmeticASEngine_2<RNG, S>::process_->factors();
             TimeGrid grid = this->timeGrid();
             typename RNG::rsg_type generator = RNG::make_sequence_generator(dimensions * (grid.size() - 1), MCDiscreteAveragingAsianEngineBase<SingleVariate, RNG, S>::seed_);
 
@@ -71,7 +73,7 @@ namespace QuantLib {
 
                 // constant BS parameters
                 double underlyingValue = BS->x0();
-                double strike = ext::dynamic_pointer_cast<StrikedTypePayoff>(MCDiscreteArithmeticASEngine_2<SingleVariate, RNG, S>::arguments_.payoff)->strike();
+                double strike = ext::dynamic_pointer_cast<StrikedTypePayoff>(MCDiscreteArithmeticASEngine_2<RNG, S>::arguments_.payoff)->strike();
                 double volatility = BS->blackVolatility()->blackVol(extractionTime, strike);
                 double riskFreeRate = BS->riskFreeRate()->zeroRate(extractionTime, Continuous);
                 double dividend = BS->dividendYield()->zeroRate(extractionTime, Continuous);
@@ -229,7 +231,7 @@ namespace QuantLib {
     template <class RNG, class S>
     inline MakeMCDiscreteArithmeticASEngine_2<RNG,S>&
     MakeMCDiscreteArithmeticASEngine_2<RNG,S>::withConstantParameters(bool constantParameters) {
-        constantParameters_= constantParameters
+        constantParameters_ = constantParameters;
         return *this;
     }
 
@@ -243,7 +245,7 @@ namespace QuantLib {
                                                       antithetic_,
                                                       samples_, tolerance_,
                                                       maxSamples_,
-                                                      seed_
+                                                      seed_,
                                                       constantParameters_));
     }
 
