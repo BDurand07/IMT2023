@@ -21,12 +21,18 @@
 #include <ql/utilities/dataformatters.hpp>
 #include <iostream>
 #include <chrono>
+#include <fstream>
 
 using namespace QuantLib;
 
 int main() {
 
     try {
+        Size width = 15;
+        auto spacer = std::setw(width);
+
+            std::ofstream outfile ("C:/Users/kaiser/Desktop/QuantLib/IMT2023/result.txt");
+            outfile <<spacer << "type" << spacer << "step" << spacer << "sample"<<spacer << "npv" << spacer << "time" "\n";
 
         // modify the sample code below to suit your project
 
@@ -76,8 +82,6 @@ int main() {
 
         // table heading
 
-        Size width = 15;
-        auto spacer = std::setw(width);
         std::cout << std::setw(40) << "old engine"
                   << std::setw(30) << "non constant"
                   << std::setw(30) << "constant"
@@ -89,7 +93,7 @@ int main() {
                   << std::endl;
 
         Size timeSteps = 10;
-        Size samples = 100000;
+        Size samples = 10000;
         Size mcSeed = 42;
 
         // European, old engine
@@ -111,6 +115,8 @@ int main() {
 
         std::cout << spacer << "European" << spacer << NPV << spacer << us / 1000000;
 
+            outfile << "European old engine" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+
         // European, new engine, non constant
 
         europeanOption.setPricingEngine(
@@ -130,6 +136,8 @@ int main() {
         us = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime).count();
 
         std::cout << spacer << NPV << spacer << us / 1000000;
+
+        outfile << "European non constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
 
         // European, new engine, constant
 
@@ -151,6 +159,8 @@ int main() {
 
         std::cout << spacer << NPV << spacer << us / 1000000 << std::endl;
 
+        outfile << "European constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+
         // Asian, old engine
 
         asianOption.setPricingEngine(
@@ -168,6 +178,8 @@ int main() {
         us = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime).count();
 
         std::cout << spacer << "Asian" << spacer << NPV << spacer << us / 1000000;
+
+        outfile << "Asian old engine" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
 
         // Asian, non constant
 
@@ -188,6 +200,8 @@ int main() {
 
         std::cout << spacer << NPV << spacer << us / 1000000;
 
+        outfile << "Asian non constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+
         // Asian, constant
 
         asianOption.setPricingEngine(
@@ -207,6 +221,8 @@ int main() {
 
         std::cout << spacer << NPV << spacer << us / 1000000 << std::endl;
 
+        outfile << "Asian constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+
         // Barrier, old engine
 
         barrierOption.setPricingEngine(
@@ -225,6 +241,8 @@ int main() {
         us = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime).count();
 
         std::cout << spacer << "Barrier" << spacer << NPV << spacer << us / 1000000;
+
+        outfile << "Barrier old engine" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
 
         // Barrier, non constant
 
@@ -246,6 +264,8 @@ int main() {
 
         std::cout << spacer << NPV << spacer << us / 1000000;
 
+        outfile << "Barrier non constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+
         // Barrier, constant
 
         barrierOption.setPricingEngine(
@@ -265,6 +285,9 @@ int main() {
         us = std::chrono::duration_cast<std::chrono::microseconds>(endTime - startTime).count();
 
         std::cout << spacer << NPV << spacer << us / 1000000 << std::endl;
+
+        outfile << "Barrier constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+        outfile.close();
 
         // All done
         system("pause");
