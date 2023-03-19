@@ -1,0 +1,10 @@
+type	step	sample	npv	time
+European old engine	10	1000	4,22306	0,173392
+European non constant	10	1000	4,22306	0,170909
+European constant	10	1000	4,22306	0,007066
+Asian old engine	10	1000	0,731079	0,18552
+Asian non constant	10	1000	0,731079	0,160567
+Asian constant	10	1000	0,732791	0,033058
+Barrier old engine	10	1000	0,277195	0,397627
+Barrier non constant	10	1000	0,277195	0,393031
+Barrier constant	10	1000	0,279092	0,129914

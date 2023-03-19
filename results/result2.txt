@@ -1,0 +1,10 @@
+type,step,sample,npv,time
+European old engine,10,100000,4.16356,13.7393
+European non constant,10,100000,4.16356,12.5165
+European constant,10,100000,4.16356,0.62088
+Asian old engine,10,100000,0.73006,12.8026
+Asian non constant,10,100000,0.73006,12.7044
+Asian constant,10,100000,0.7318,2.08981
+Barrier old engine,10,100000,0.27153,18.1871
+Barrier non constant,10,100000,0.27153,18.1941
+Barrier constant,10,100000,0.272449,6.32788
