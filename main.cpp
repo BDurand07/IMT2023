@@ -31,8 +31,8 @@ int main() {
         Size width = 15;
         auto spacer = std::setw(width);
 
-            std::ofstream outfile ("C:/Users/kaiser/Desktop/QuantLib/IMT2023/result.txt");
-            outfile <<spacer << "type" << spacer << "step" << spacer << "sample"<<spacer << "npv" << spacer << "time" "\n";
+            std::ofstream outfile ("C:/Users/kaiser/Desktop/QuantLib/IMT2023/result2.txt");
+            outfile << "type" << "," <<"step" << "," << "sample" << "," << "npv" << "," << "time" "\n";
 
         // modify the sample code below to suit your project
 
@@ -93,7 +93,7 @@ int main() {
                   << std::endl;
 
         Size timeSteps = 10;
-        Size samples = 10000;
+        Size samples = 100000;
         Size mcSeed = 42;
 
         // European, old engine
@@ -115,7 +115,7 @@ int main() {
 
         std::cout << spacer << "European" << spacer << NPV << spacer << us / 1000000;
 
-            outfile << "European old engine" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+            outfile << "European old engine" << "," << timeSteps << "," << samples << "," << NPV << "," << us / 1000000 << "\n";
 
         // European, new engine, non constant
 
@@ -137,7 +137,7 @@ int main() {
 
         std::cout << spacer << NPV << spacer << us / 1000000;
 
-        outfile << "European non constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+        outfile << "European non constant" << "," << timeSteps << "," << samples << "," << NPV << "," << us / 1000000 << "\n";
 
         // European, new engine, constant
 
@@ -159,7 +159,7 @@ int main() {
 
         std::cout << spacer << NPV << spacer << us / 1000000 << std::endl;
 
-        outfile << "European constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+        outfile << "European constant" << "," << timeSteps << "," << samples <<"," << NPV << "," << us / 1000000 << "\n";
 
         // Asian, old engine
 
@@ -179,7 +179,7 @@ int main() {
 
         std::cout << spacer << "Asian" << spacer << NPV << spacer << us / 1000000;
 
-        outfile << "Asian old engine" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+        outfile << "Asian old engine" << "," << timeSteps << "," << samples << "," << NPV <<"," << us / 1000000 << "\n";
 
         // Asian, non constant
 
@@ -200,7 +200,7 @@ int main() {
 
         std::cout << spacer << NPV << spacer << us / 1000000;
 
-        outfile << "Asian non constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+        outfile << "Asian non constant" << "," << timeSteps << "," << samples << "," << NPV << "," << us / 1000000 << "\n";
 
         // Asian, constant
 
@@ -221,7 +221,7 @@ int main() {
 
         std::cout << spacer << NPV << spacer << us / 1000000 << std::endl;
 
-        outfile << "Asian constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+        outfile << "Asian constant" << "," << timeSteps << "," << samples << "," << NPV << "," << us / 1000000 << "\n";
 
         // Barrier, old engine
 
@@ -242,7 +242,7 @@ int main() {
 
         std::cout << spacer << "Barrier" << spacer << NPV << spacer << us / 1000000;
 
-        outfile << "Barrier old engine" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+        outfile << "Barrier old engine" << "," << timeSteps << "," << samples << "," << NPV << "," << us / 1000000 << "\n";
 
         // Barrier, non constant
 
@@ -264,7 +264,7 @@ int main() {
 
         std::cout << spacer << NPV << spacer << us / 1000000;
 
-        outfile << "Barrier non constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+        outfile << "Barrier non constant" << "," << timeSteps << "," << samples << "," << NPV << "," << us / 1000000 << "\n";
 
         // Barrier, constant
 
@@ -286,11 +286,11 @@ int main() {
 
         std::cout << spacer << NPV << spacer << us / 1000000 << std::endl;
 
-        outfile << "Barrier constant" << spacer << timeSteps << spacer << samples << spacer << NPV << spacer << us / 1000000 << "\n";
+        outfile << "Barrier constant" << "," << timeSteps << "," << samples << "," << NPV << "," << us / 1000000 << "\n";
         outfile.close();
 
         // All done
-        system("pause");
+       // system("pause");
         return 0;
 
     } catch (std::exception& e) {
